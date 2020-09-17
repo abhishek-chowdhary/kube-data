@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    cni.projectcalico.org/podIP: 10.244.0.79/32
+  creationTimestamp: "2020-09-15T09:46:59Z"
+  labels:
+    run: demo
+  name: demo
+  namespace: jenkins
+  resourceVersion: "176918"
+  selfLink: /api/v1/namespaces/jenkins/pods/demo
+  uid: ce7d50cf-41ba-493c-bae6-534ac58186e8
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: demo
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-lr4mq
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-agentpool-34751183-vmss000001
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-lr4mq
+    secret:
+      defaultMode: 420
+      secretName: default-token-lr4mq
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2020-09-15T09:46:59Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2020-09-15T09:47:07Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2020-09-15T09:47:07Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2020-09-15T09:46:59Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://57c13dcdf034cf7b11aa8dd0fbf50427c9e194575d023793a5fe8700f12c047e
+    image: nginx:latest
+    imageID: docker-pullable://nginx@sha256:c628b67d21744fce822d22fdcc0389f6bd763daac23a6b77147d0712ea7102d0
+    lastState: {}
+    name: demo
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2020-09-15T09:47:07Z"
+  hostIP: 10.240.0.5
+  phase: Running
+  podIP: 10.244.0.79
+  podIPs:
+  - ip: 10.244.0.79
+  qosClass: BestEffort
+  startTime: "2020-09-15T09:46:59Z"
